@@ -1,3 +1,5 @@
+
+-- A base table for all users.
 CREATE TABLE User (
     user_id        INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     user_email     VARCHAR(254) NOT NULL,
@@ -9,6 +11,7 @@ CREATE TABLE User (
     UNIQUE KEY (user_email)
 );
 
+-- Students are normal users of the website.
 CREATE TABLE Student (
     student_id     INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id        INTEGER UNSIGNED NOT NULL,
@@ -20,6 +23,7 @@ CREATE TABLE Student (
         ON DELETE CASCADE
 );
 
+-- Admins are elevated students. They are leaders of RSOs, can accept join requests from users to their RSOs, and can create events.
 CREATE TABLE Admin (
     admin_id    INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     student_id  INTEGER UNSIGNED NOT NULL,
@@ -28,6 +32,7 @@ CREATE TABLE Admin (
         ON DELETE CASCADE,
 );
 
+-- SuperAdmins are the superusers of the site. Basically, the website owners. They have the ability to add Universities, accept RSO requests, and accept Admin Event requests.
 CREATE TABLE SuperAdmin (
     superadmin_id  INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id        INTEGER UNSIGNED NOT NULL,
@@ -36,6 +41,7 @@ CREATE TABLE SuperAdmin (
         ON DELETE CASCADE
 );
 
+-- Contains all information pertaining to a University.
 CREATE TABLE University (
     university_id            INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     university_name          VARCHAR(64) NOT NULL,
@@ -47,6 +53,7 @@ CREATE TABLE University (
     PRIMARY KEY (university_id)
 );
 
+-- Contains all information pertaining to an RSO.
 CREATE TABLE RSO (
     rso_id      INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     rso_name    VARCHAR(64) NOT NULL,
@@ -56,6 +63,7 @@ CREATE TABLE RSO (
         ON DELETE CASCADE
 );
 
+-- Contains all information pertaining to an approved Event.
 CREATE TABLE Event (
     event_id            INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     event_name          VARCHAR(64) NOT NULL,
@@ -73,6 +81,7 @@ CREATE TABLE Event (
     PRIMARY KEY (event_id)
 );
 
+-- Defines an approved Event run by/made for an RSO.
 CREATE TABLE RSO_Event (
     rsoevent_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     event_id    INTEGER UNSIGNED NOT NULL,
@@ -84,6 +93,7 @@ CREATE TABLE RSO_Event (
         ON DELETE CASCADE
 );
 
+-- Defines an approved Event not related to a particular RSO.
 CREATE TABLE Admin_Event (
     adminevent_id        INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     event_id             INTEGER UNSIGNED NOT NULL,
@@ -95,6 +105,7 @@ CREATE TABLE Admin_Event (
         ON DELETE CASCADE
 );
 
+-- Contains all Comments made for all Events.
 CREATE TABLE Comment (
     comment_id         INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     comment_body       VARCHAR(1024) NOT NULL,
@@ -108,6 +119,7 @@ CREATE TABLE Comment (
         ON DELETE CASCADE
 );
 
+-- Contains all Ratings made for all Events. 1-5 stars.
 CREATE TABLE Rating (
     rating_id   INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     rating_num  ENUM('one','two','three','four','five') NOT NULL,
@@ -120,6 +132,7 @@ CREATE TABLE Rating (
         ON DELETE CASCADE
 );
 
+-- Contains all approved Members of RSOs.
 CREATE TABLE RSO_Member (
     member_id   INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     rso_id      INTEGER UNSIGNED NOT NULL,
@@ -131,6 +144,7 @@ CREATE TABLE RSO_Member (
         ON DELETE CASCADE
 );
 
+-- Contains all RSO Requests which have to be approved by a SuperAdmin.
 CREATE TABLE RSO_Request (
     rsorequest_id             INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     rsorequest_name           VARCHAR(64) NOT NULL,
@@ -145,6 +159,7 @@ CREATE TABLE RSO_Request (
         ON DELETE CASCADE
 );
 
+-- Contains all Admin Event Requests which have to be approved by a SuperAdmin.
 CREATE TABLE Admin_Event_Request (
     eventrequest_id            INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     eventrequest_name          VARCHAR(64) NOT NULL,
@@ -162,6 +177,7 @@ CREATE TABLE Admin_Event_Request (
     PRIMARY KEY (eventrequest_id)
 );
 
+-- Contains all RSO Member Requests which have to be approved by the RSO's Admin.
 CREATE TABLE RSO_Member_Request (
     memberrequest_id  INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     rso_id            INTEGER UNSIGNED NOT NULL,
