@@ -1,0 +1,13 @@
+Could do these things later on:
+ - Allow SuperAdmins to add pictures when creating a University (LONGBLOB? MEDIUMBLOB? BLOB?)
+ - Add descriptions, links, etc to RSO table or/and University table
+ - When making requests, allow users to add text giving context/justification for the approver.
+ - It would be easier and probably more efficient to have fields repeat throughout the database. For ex, storing the university_id in the Event table as well as the University table. There might be ways to have MySQL update those fields automatically when they're changed.
+ - Instead of constantly computing the Rating every time a request is made, store the Rating in the Event, and update it periodically.
+ - Add counter fields for ratings, comments, events, rsos, student count, etc and update them with triggers
+ - Add tags for events
+ - If necessary, add quotes/backticks to script
+ - Utilize Indices
+
+Justification:
+ - Instead of adding requests to their table type and adding another field for request approval, I created clones of those tables specifically for requests. I think separating out these tables, will reduce edge cases and complexity in development.
