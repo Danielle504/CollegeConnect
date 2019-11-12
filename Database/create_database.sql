@@ -1,3 +1,7 @@
+-- Delete the old database.
+DROP DATABASE collegeconnect;
+CREATE DATABASE collegeconnect;
+USE collegeconnect;
 
 -- A base table for all users.
 CREATE TABLE User (
@@ -9,36 +13,6 @@ CREATE TABLE User (
     user_lastname  VARCHAR(20) NOT NULL,
     PRIMARY KEY (user_id),
     UNIQUE KEY (user_email)
-);
-
--- Students are normal users of the website.
-CREATE TABLE Student (
-    student_id     INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-    user_id        INTEGER UNSIGNED NOT NULL,
-    university_id  INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY (student_id),
-    FOREIGN KEY (user_id) REFERENCES User
-        ON DELETE CASCADE,
-    FOREIGN KEY (university_id) REFERENCES University
-        ON DELETE CASCADE
-);
-
--- Admins are elevated students. They are leaders of RSOs, can accept join requests from users to their RSOs, and can create events.
-CREATE TABLE Admin (
-    admin_id    INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-    student_id  INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY (admin_id),
-    FOREIGN KEY (student_id) REFERENCES Student
-        ON DELETE CASCADE,
-);
-
--- SuperAdmins are the superusers of the site. Basically, the website owners. They have the ability to add Universities, accept RSO requests, and accept Admin Event requests.
-CREATE TABLE SuperAdmin (
-    superadmin_id  INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-    user_id        INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY (superadmin_id),
-    FOREIGN KEY (user_id) REFERENCES User
-        ON DELETE CASCADE
 );
 
 -- Contains all information pertaining to a University.
@@ -53,13 +27,43 @@ CREATE TABLE University (
     PRIMARY KEY (university_id)
 );
 
+-- Students are normal users of the website.
+CREATE TABLE Student (
+    student_id     INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id        INTEGER UNSIGNED NOT NULL,
+    university_id  INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (student_id),
+    FOREIGN KEY (user_id) REFERENCES User (user_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (university_id) REFERENCES University (university_id)
+        ON DELETE CASCADE
+);
+
+-- Admins are elevated students. They are leaders of RSOs, can accept join requests from users to their RSOs, and can create events.
+CREATE TABLE Admin (
+    admin_id    INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    student_id  INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (admin_id),
+    FOREIGN KEY (student_id) REFERENCES Student (student_id)
+        ON DELETE CASCADE
+);
+
+-- SuperAdmins are the superusers of the site. Basically, the website owners. They have the ability to add Universities, accept RSO requests, and accept Admin Event requests.
+CREATE TABLE SuperAdmin (
+    superadmin_id  INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id        INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (superadmin_id),
+    FOREIGN KEY (user_id) REFERENCES User (user_id)
+        ON DELETE CASCADE
+);
+
 -- Contains all information pertaining to an RSO.
 CREATE TABLE RSO (
     rso_id      INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     rso_name    VARCHAR(64) NOT NULL,
     admin_id    INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (rso_id),
-    FOREIGN KEY (admin_id) REFERENCES Admin
+    FOREIGN KEY (admin_id) REFERENCES Admin (admin_id)
         ON DELETE CASCADE
 );
 
@@ -87,9 +91,9 @@ CREATE TABLE RSO_Event (
     event_id    INTEGER UNSIGNED NOT NULL,
     rso_id      INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (rsoevent_id),
-    FOREIGN KEY (event_id) REFERENCES Event
+    FOREIGN KEY (event_id) REFERENCES Event (event_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (rso_id) REFERENCES RSO
+    FOREIGN KEY (rso_id) REFERENCES RSO (rso_id)
         ON DELETE CASCADE
 );
 
@@ -99,9 +103,9 @@ CREATE TABLE Admin_Event (
     event_id             INTEGER UNSIGNED NOT NULL,
     admin_id             INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (adminevent_id),
-    FOREIGN KEY (event_id) REFERENCES Event
+    FOREIGN KEY (event_id) REFERENCES Event (event_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (admin_id) REFERENCES Admin
+    FOREIGN KEY (admin_id) REFERENCES Admin (admin_id)
         ON DELETE CASCADE
 );
 
@@ -113,9 +117,9 @@ CREATE TABLE Comment (
     event_id           INTEGER UNSIGNED NOT NULL,
     user_id            INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (comment_id),
-    FOREIGN KEY (event_id) REFERENCES Event
+    FOREIGN KEY (event_id) REFERENCES Event (event_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES User
+    FOREIGN KEY (user_id) REFERENCES User (user_id)
         ON DELETE CASCADE
 );
 
@@ -125,10 +129,10 @@ CREATE TABLE Rating (
     rating_num  ENUM('one','two','three','four','five') NOT NULL,
     event_id    INTEGER UNSIGNED NOT NULL,
     user_id     INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY (comment_id),
-    FOREIGN KEY (event_id) REFERENCES Event
+    PRIMARY KEY (rating_id),
+    FOREIGN KEY (event_id) REFERENCES Event (event_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES User
+    FOREIGN KEY (user_id) REFERENCES User (user_id)
         ON DELETE CASCADE
 );
 
@@ -138,9 +142,9 @@ CREATE TABLE RSO_Member (
     rso_id      INTEGER UNSIGNED NOT NULL,
     user_id     INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (member_id),
-    FOREIGN KEY (rso_id) REFERENCES RSO
+    FOREIGN KEY (rso_id) REFERENCES RSO (rso_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES User
+    FOREIGN KEY (user_id) REFERENCES User (user_id)
         ON DELETE CASCADE
 );
 
@@ -155,7 +159,7 @@ CREATE TABLE RSO_Request (
     rsorequest_student5email  VARCHAR(254) NOT NULL,
     student_id                INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (rsorequest_id),
-    FOREIGN KEY (student_id) REFERENCES Student
+    FOREIGN KEY (student_id) REFERENCES Student (student_id)
         ON DELETE CASCADE
 );
 
@@ -183,8 +187,8 @@ CREATE TABLE RSO_Member_Request (
     rso_id            INTEGER UNSIGNED NOT NULL,
     user_id           INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (memberrequest_id),
-    FOREIGN KEY (rso_id) REFERENCES RSO
+    FOREIGN KEY (rso_id) REFERENCES RSO (rso_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES User
+    FOREIGN KEY (user_id) REFERENCES User (user_id)
         ON DELETE CASCADE
 );
