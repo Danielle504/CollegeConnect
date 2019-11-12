@@ -178,7 +178,10 @@ CREATE TABLE Admin_Event_Request (
     eventrequest_longitude     FLOAT(9,6),
     eventrequest_contactphone  VARCHAR(20),
     eventrequest_contactemail  VARCHAR(254),
-    PRIMARY KEY (eventrequest_id)
+    admin_id                   INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (eventrequest_id),
+    FOREIGN KEY (admin_id) REFERENCES Admin (admin_id)
+        ON DELETE CASCADE
 );
 
 -- Contains all RSO Member Requests which have to be approved by the RSO's Admin.
