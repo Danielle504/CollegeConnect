@@ -20,8 +20,8 @@ CREATE TABLE University (
     university_id            INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     university_name          VARCHAR(64) NOT NULL,
     university_address       VARCHAR(128),
-    university_latitude      FLOAT(10,6),
-    university_longitude     FLOAT(10,6),
+    university_latitude      FLOAT(8,6),
+    university_longitude     FLOAT(9,6),
     university_description   VARCHAR(256),
     university_studentcount  INTEGER UNSIGNED,
     PRIMARY KEY (university_id)
@@ -78,8 +78,8 @@ CREATE TABLE Event (
     event_duration      TIME,
     event_category      VARCHAR(16),
     event_address       VARCHAR(128),
-    event_latitude      FLOAT(10,6),
-    event_longitude     FLOAT(10,6),
+    event_latitude      FLOAT(8,6),
+    event_longitude     FLOAT(9,6),
     event_contactphone  VARCHAR(20),
     event_contactemail  VARCHAR(254),
     PRIMARY KEY (event_id)
@@ -174,8 +174,8 @@ CREATE TABLE Admin_Event_Request (
     eventrequest_duration      TIME,
     eventrequest_category      VARCHAR(16),
     eventrequest_address       VARCHAR(128),
-    eventrequest_latitude      FLOAT(10,6),
-    eventrequest_longitude     FLOAT(10,6),
+    eventrequest_latitude      FLOAT(8,6),
+    eventrequest_longitude     FLOAT(9,6),
     eventrequest_contactphone  VARCHAR(20),
     eventrequest_contactemail  VARCHAR(254),
     PRIMARY KEY (eventrequest_id)
