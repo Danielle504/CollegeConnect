@@ -22,7 +22,7 @@ Three user types
     - Can Comment on, Rate, and Share Events they can see
 
 Universities
-    - Each one will have the fields: Name, Description, Address, Latitude, Longitude (for coordinates on a google map), and Student Count (number of students from university, on the website)
+    - Each one will have the fields: Name, Description, Address, Latitude, Longitude (for coordinates on a google map), Pictures, and Student Count (number of students from university, on the website)
     - Each one will have RSOs under it for that University
     - Each one will have Events under it for that University
     - Each one will have Students under it for that University
@@ -42,6 +42,7 @@ RSOs
     
     RSO Requests
     - Each one will have the fields: Name and the 5 Student emails
+    - All student emails must use the same email domain
     - Requests will be sent to SuperAdmins for approval
     
     RSO Member Requests
@@ -54,6 +55,8 @@ Events
     - Each one will have Ratings, Comments, and Sharing
     - Each one will have a Privacy Option
     - Each one will have an Overall Rating that should be shown
+    - Events will be able to be viewed by location
+    - Events will be able to be viewed by University (only the Events they're allowed to see)
     
     Privacy Options
     - Can be set to Public, Private, or RSO
