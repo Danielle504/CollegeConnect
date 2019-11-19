@@ -1,0 +1,86 @@
+Website Requirements
+
+Note: All 'fields' should be shown to the user
+
+Three user types
+    SuperAdmin
+    - Can create/register Universities
+    - Can approve/deny RSO Requests to create RSOs
+    - Can approve/deny Admin Event Requests
+    
+    Admin
+    - Can approve/deny RSO Member Requests (from Students) for the RSOs they lead
+    - Can create Events for the RSOs they lead
+    - Can create Admin Event Requests
+    - Admins are also Students, they just have more privileges
+    
+    Student
+    - Can join one University
+    - Can send an RSO Member Request to join an RSO
+    - Can send an RSO Request to create an RSO
+    - Can see the Events that are Public, for their own University (Private), and for their own RSOs
+    - Can Comment on, Rate, and Share Events they can see
+
+Universities
+    - Each one will have the fields: Name, Description, Address, Latitude, Longitude (for coordinates on a google map), and Student Count (number of students from university, on the website)
+    - Each one will have RSOs under it for that University
+    - Each one will have Events under it for that University
+    - Each one will have Students under it for that University
+    - Each one will have Admins under it for that University
+
+RSOs
+    - Each one will have the fields: Name and Admin (the Admin that created it)
+    - Each one will have an Admin that created it and leads it
+    - Each one will have Students that have joined it (RSO Members)
+    - Each one will have Events made for it by the Admin
+    - Each one will have RSO Member Requests
+
+    RSO Members
+    - Can view the Events of the RSO
+    - Can Comment on, Rate, and Share Events of the RSO
+    - RSO Members are also Students, only, they are part of the RSO now too
+    
+    RSO Requests
+    - Each one will have the fields: Name and the 5 Student emails
+    - Requests will be sent to SuperAdmins for approval
+    
+    RSO Member Requests
+    - Sent to the Admin of the respective RSO for approval/denial
+
+Events
+    - Each one will have the fields: Name, Privacy Option, Description, Time&Day (of the Event), Duration (length of the Event), Category, Address, Latitude, Longitude (for coordinates on a google map), Contact Phone, and Contact Email
+    - Each one will belong to an RSO
+    - Each one will be seen by Students
+    - Each one will have Ratings, Comments, and Sharing
+    - Each one will have a Privacy Option
+    - Each one will have an Overall Rating that should be shown
+    
+    Privacy Options
+    - Can be set to Public, Private, or RSO
+    - Public: Will let everyone that visits the website see the Event
+    - Private: Will let all Students of the Admin's University see the Event
+    - RSO: Will let all Members of the RSO see the Event
+        - Cannot be used when making Admin Events because an Admin Event is not affiliated with any RSO
+    
+    Admin Events
+    - Events independent of RSOs
+    - Each one will be created by an Admin
+    - Each one must be approved/denied by a SuperAdmin
+    - The Privacy Option 'RSO' does not apply because an Admin Event is not affiliated with any RSO.
+        
+        Admin Event Requests
+        - Each one will have the same fields as an Event (minus the Privacy Option 'RSO')
+        - Requests will be sent to SuperAdmins for approval
+
+Comments
+    - Each one will have the fields: Text and Time&Date
+    - Each one will be under an Event
+    - Each one can be deleted or edited
+
+Ratings
+    - Each one will have the field Rating
+    - Each one will be given by a Student
+    - Can give stars from 1-5
+
+Sharing
+    - Each Event can be Shared to some social media platform by the Student
