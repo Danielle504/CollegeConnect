@@ -587,7 +587,7 @@ VALUES (
     'HackUCF Weekly Meeting',
     'private',
     'Come see this week\'s workshop on Wireshark!',
-    '18:00:00', '2019-11-29', '02:00:00',
+    '2019-11-29 18:00:00', '02:00:00',
     'Meeting',
     'HEC 101', 0, 0,
     '+19998888', 'hackucf@ucf.edu'
@@ -599,7 +599,7 @@ VALUES (
     'HackUCF Financials Meeting',
     'rso',
     'For the sake of transparency, we\'re releasing all our financials. Feel free to come!',
-    '18:00:00', '2019-11-30', '02:00:00',
+    '2019-11-30 18:00:00', '02:00:00',
     'Meeting',
     'HEC 101', 0, 0,
     '+19998888', 'hackucf@ucf.edu'
@@ -611,7 +611,7 @@ VALUES (
     'Knight Hacks Weekly Meeting',
     'private',
     'Come see this week\'s workshop on RESTFul APIs!',
-    '18:00:00', '2019-11-27', '02:00:00',
+    '2019-11-27 18:00:00', '02:00:00',
     'Meeting',
     'MSB 121', 0, 0,
     '+19998888', 'knighthacks@ucf.edu'
@@ -623,7 +623,7 @@ VALUES (
     'AI@UCF Weekly Meeting',
     'private',
     'Come see this week\'s workshop on Fully Convolutional Neural Networks!',
-    '18:00:00', '2019-12-06', '02:00:00',
+    '2019-12-06 18:00:00', '02:00:00',
     'Meeting',
     'HEC 101', 0, 0,
     '+19998888', 'aiatucf@ucf.edu'
@@ -636,7 +636,7 @@ VALUES (
     'UCF STEM Day',
     'public',
     'Let\'s teach kids about tech!',
-    '18:00:00', '2019-12-10', '02:00:00',
+    '2019-12-10 18:00:00', '02:00:00',
     'Campus Activity',
     'Student Union Ballroom', 0, 0,
     '+19998888', 'hackucf@ucf.edu'
@@ -648,7 +648,7 @@ VALUES (
     'Athletics at UCF',
     'private',
     'Come learn about how to get involved in athletics at UCF!',
-    '18:00:00', '2020-01-14', '02:00:00',
+    '2020-01-14 18:00:00', '02:00:00',
     'Meeting',
     'Student Union Ballroom', 0, 0,
     '+19998888', 'canoeingclub@ucf.edu'
@@ -662,7 +662,7 @@ VALUES (
     'Track Club Weekly Sprint',
     'private',
     'Come run with us!',
-    '10:00:00', '2019-11-30', '02:00:00',
+    '2019-11-30 10:00:00', '02:00:00',
     'Recreational Exercise',
     'FSU Track', 0, 0,
     '+19998888', 'trackclub@fsu.edu'
@@ -674,7 +674,7 @@ VALUES (
     'Literature Club Weekly Meeting',
     'private',
     'Come discuss a book with us!',
-    '18:00:00', '2019-11-26', '02:00:00',
+    '2019-11-26 18:00:00', '02:00:00',
     'Meeting',
     'LIT 102', 0, 0,
     '+19998888', 'litclub@fsu.edu'
@@ -1257,7 +1257,7 @@ VALUES (
     'UCF: Disrupting AI',
     'private',
     'UCF\'s history in disrupting AI',
-    '18:00:00', '2020-01-20', '02:00:00',
+    '2020-01-20 18:00:00', '02:00:00',
     'Presentation',
     'Student Union Ballroom', 0, 0,
     '+19998888', 'aiatucf@ucf.edu',
@@ -1271,7 +1271,7 @@ VALUES (
     'Track Club: Getting involved',
     'private',
     'FSU\'s track team is massive and widely known. Here\'s how you can get started!',
-    '18:00:00', '2020-01-16', '02:00:00',
+    '2020-01-16 18:00:00', '02:00:00',
     'Recreational Exercise',
     'FSU Auditorium', 0, 0,
     '+19998888', 'trackclub@fsu.edu',
