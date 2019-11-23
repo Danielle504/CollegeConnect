@@ -5,14 +5,15 @@ USE collegeconnect;
 
 -- A base table for all users.
 CREATE TABLE User (
-    user_id        INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-    user_email     VARCHAR(254) NOT NULL,
-    user_passhash  CHAR(128) NOT NULL,
-    user_salt      CHAR(16) NOT NULL,
-    user_firstname VARCHAR(20) NOT NULL,
-    user_lastname  VARCHAR(20) NOT NULL,
+    user_id         INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_email      VARCHAR(254) NOT NULL,
+    user_passhash   CHAR(128) NOT NULL,
+    user_salt       CHAR(16) NOT NULL,
+    user_sessionid  CHAR(36),
+    user_firstname  VARCHAR(20) NOT NULL,
+    user_lastname   VARCHAR(20) NOT NULL,
     PRIMARY KEY (user_id),
-    UNIQUE KEY (user_email)
+    UNIQUE KEY (user_email, user_sessionid)
 );
 
 -- Contains all information pertaining to a University.

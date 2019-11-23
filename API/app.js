@@ -1,51 +1,126 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const uuid = require('uuid/v4')
+const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const FileStore = require('session-file-store')(session)
+const bodyParser = require('body-parser')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const bcrypt = require('bcrypt-nodejs')
 
-const mysql = require('mysql');
-const db_config = require('./db_config');
+const users = [
+  {id: '2f24vvg', email: 'test@test.com', password: 'password'}
+]
 
-let connection = mysql.createConnection({
-    host: db_config.host,
-    user: db_config.user,
-    password: db_config.password,
-    database: db_config.database
-});
+// invoke an instance of express application.
+var app = express()
 
-connection.connect(function(err) {
-  if (err) {
-    return console.error('error: ' + err.message);
-  }
- 
-  console.log('Connected to the MySQL server.');
-});
+app.set('port', 3100);
 
-// import morgan package
-const morgan = require('morgan');
-//use it
-app.use(morgan('dev'));
+// set morgan to log info about our requests for development use.
+//app.use(morgan('dev'))
 
-// import body-parser
-const bodyParser = require('body-parser');
-// let's use it
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+// initialize body-parser to parse incoming parameters requests to req.body
+app.use(bodyParser.urlencoded({ extended: true }))
 
-// defining routes
-const ordersRoutes = require('./routes/orders')
-app.use('/orders', ordersRoutes);
+// initialize cookie-parser to allow us access the cookies stored in the browser. 
+app.use(cookieParser())
 
+app.use(express.static(__dirname + '/public'));
 
-app.use((req, res, next) => {
-    req.header('Access-Controll-Allow-Orgin','*');
-    req.header(
-        'Access-Controll-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    );
-    if(req.method === 'OPTIONS'){
-        res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
-        return res.status(200).json({});
+// initialize express-session to allow us track the logged-in user across sessions.
+app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
     }
-    next();
-});
+}))
 
-module.exports = app;
+
+// This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
+// This usually happens when you stop your express server after login, your cookie still remains saved in the browser.
+app.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid')        
+    }
+    next()
+})
+
+
+// middleware function to check for logged-in users
+var sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.redirect('/dashboard')
+    } else {
+        next()
+    }    
+}
+
+
+// route for Home-Page
+app.get('/', sessionChecker, (req, res) => {
+    res.redirect('/login')
+})
+
+
+// route for user registration
+app.route('/register')
+    .get(sessionChecker, (req, res) => {
+        res.sendFile(__dirname + '/public/register.html')
+    })
+    .post((req, res) => {
+        // register
+    })
+
+
+// route for user Login
+app.route('/login')
+    .get(sessionChecker, (req, res) => {
+        res.sendFile(__dirname + '/public/login.html')
+    })
+    .post((req, res) => {
+        var email = req.body.email,
+            password = req.body.password
+        
+        const user = users[0] 
+        if(email === user.email && password === user.password) {
+            console.log('Login successful')
+          
+            res.redirect('/dashboard')
+        } else {
+            res.redirect('/login')
+        }
+    })
+
+
+// route for user's dashboard
+app.get('/dashboard', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.sendFile(__dirname + '/public/dashboard.html')
+    } else {
+        res.redirect('/login')
+    }
+})
+
+
+// route for user logout
+app.get('/logout', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.clearCookie('user_sid')
+        res.redirect('/')
+    } else {
+        res.redirect('/login')
+    }
+})
+
+
+// route for handling 404 requests(unavailable routes)
+app.use(function (req, res, next) {
+  res.status(404).send("Sorry can't find that!")
+})
+
+module.exports = app
