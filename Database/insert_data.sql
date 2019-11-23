@@ -9,6 +9,7 @@ VALUES (
     'superadmin1@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'SuperAdmin',
     '1'
 );
@@ -21,6 +22,7 @@ VALUES (
     'admin1@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Admin',
     '1'
 );
@@ -31,6 +33,7 @@ VALUES (
     'admin2@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Admin',
     '2'
 );
@@ -41,6 +44,7 @@ VALUES (
     'admin3@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Admin',
     '3'
 );
@@ -52,6 +56,7 @@ VALUES (
     'admin4@fsu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Admin',
     '4'
 );
@@ -62,6 +67,7 @@ VALUES (
     'admin5@fsu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Admin',
     '5'
 );
@@ -74,6 +80,7 @@ VALUES (
     'student1@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '1'
 );
@@ -84,6 +91,7 @@ VALUES (
     'student2@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '2'
 );
@@ -94,6 +102,7 @@ VALUES (
     'student3@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '3'
 );
@@ -104,6 +113,7 @@ VALUES (
     'student4@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '4'
 );
@@ -114,6 +124,7 @@ VALUES (
     'student5@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '5'
 );
@@ -124,6 +135,7 @@ VALUES (
     'student6@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '6'
 );
@@ -134,6 +146,7 @@ VALUES (
     'student7@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '7'
 );
@@ -144,6 +157,7 @@ VALUES (
     'student8@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '8'
 );
@@ -154,6 +168,7 @@ VALUES (
     'student9@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '9'
 );
@@ -164,6 +179,7 @@ VALUES (
     'student10@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '10'
 );
@@ -174,6 +190,7 @@ VALUES (
     'student11@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '11'
 );
@@ -184,6 +201,7 @@ VALUES (
     'student12@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '12'
 );
@@ -194,6 +212,7 @@ VALUES (
     'student13@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '13'
 );
@@ -204,6 +223,7 @@ VALUES (
     'student14@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '14'
 );
@@ -214,6 +234,7 @@ VALUES (
     'student15@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '15'
 );
@@ -224,6 +245,7 @@ VALUES (
     'student16@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '16'
 );
@@ -234,6 +256,7 @@ VALUES (
     'student17@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '17'
 );
@@ -244,6 +267,7 @@ VALUES (
     'student18@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '18'
 );
@@ -254,6 +278,7 @@ VALUES (
     'student19@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '19'
 );
@@ -264,6 +289,7 @@ VALUES (
     'student20@knights.ucf.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '20'
 );
@@ -275,6 +301,7 @@ VALUES (
     'student21@fsu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '21'
 );
@@ -285,6 +312,7 @@ VALUES (
     'student22@fsu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '22'
 );
@@ -295,6 +323,7 @@ VALUES (
     'student23@fsu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '23'
 );
@@ -305,6 +334,7 @@ VALUES (
     'student24@fsu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '24'
 );
@@ -315,6 +345,7 @@ VALUES (
     'student25@fsu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '25'
 );
@@ -326,6 +357,7 @@ VALUES (
     'student26@nyu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '26'
 );
@@ -336,6 +368,7 @@ VALUES (
     'student27@nyu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '27'
 );
@@ -346,6 +379,7 @@ VALUES (
     'student28@nyu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '28'
 );
@@ -356,6 +390,7 @@ VALUES (
     'student29@nyu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '29'
 );
@@ -366,6 +401,7 @@ VALUES (
     'student30@nyu.edu',
     '30163935c002fc4e1200906c3d30a9c4956b4af9f6dcaef1eb4b1fcb8fba69e7a7acdc491ea5b1f2864ea8c01b01580ef09defc3b11b3f183cb21d236f7f1a6b',
     '0000000000000000',
+    NULL,
     'Student',
     '30'
 );
