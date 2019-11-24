@@ -287,18 +287,6 @@
 <script>
     function myFunction(club) 
     {
-      jQuery.ajax({
-        url     : '/sendRSOData',
-        async   : true,
-        dataType: 'json',
-        type    : 'POST',
-        data    : {
-             rso_name: club
-        }
-        }).done(function() {
-            // Handle Success
-        }).fail(function(xhr, status, error) {
-          // Handle Failure
-    })
+      
     }
 </script>
