@@ -145,12 +145,136 @@ app.get(['/dashboard', '/dashboard.html'], sessionChecker, (req, res) => {
   res.sendFile(__dirname + '/public/dashboard.html')
 })
 
+app.get(['/adminrequests', '/admin_requests.html'], sessionChecker, (req, res) => {
+  res.sendFile(__dirname + '/public/admin_requests.html')
+})
+
+app.get(['/about', '/about.html'], sessionChecker, (req, res) => {
+  res.sendFile(__dirname + '/public/about.html')
+})
+
+app.get(['/contact', '/contact.html'], sessionChecker, (req, res) => {
+  res.sendFile(__dirname + '/public/contact.html')
+})
+
+app.get(['/courses', '/courses.html'], sessionChecker, (req, res) => {
+  res.sendFile(__dirname + '/public/courses.html')
+})
+
+app.get(['/coursesingle', '/course-single.html'], sessionChecker, (req, res) => {
+  res.sendFile(__dirname + '/public/course-single.html')
+})
+
 app.get('/createevent', sessionChecker, (req, res) => {
   res.sendFile(__dirname + '/public/event.html')
 })
 
+app.post('/createevent', (req, res, next) => {
+    console.log(req.body)
+  
+  let name = req.body.name
+  let privacy = req.body.privacy
+  
+  if(!name || !privacy) {
+    res.redirect('/')
+    return;
+  }
+  
+  let sql = `
+    INSERT INTO Event
+    VALUES (
+        NULL,
+        '` + name + `',
+        '` + privacy + `'
+    );`
+    console.log(sql)
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err) {
+      res.redirect('/')
+      return;
+    }
+    
+    console.log('Event inserted')
+    console.log(rows.insertId)
+  });
+})
+
+app.get(['/event', '/blog-single.html'], sessionChecker, (req, res) => {
+  res.sendFile(__dirname + '/public/blog-single.html')
+})
+
+app.get('/getEvent', (req, res, next) => {
+  console.log(req.body)
+  
+  let event_id = req.body.event_id
+  
+  if(!event_id) {
+    res.redirect('/')
+    return;
+  }
+  
+  let sql = `
+  SELECT *
+  FROM Event
+  WHERE Event.event_id='` + event_id + `'`
+  console.log(sql)
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err) {
+      res.redirect('/')
+      return;
+    }
+    
+    console.log('Retrieved event data')
+    return rows[0];
+  });
+})
+
 app.get('/createrso', sessionChecker, (req, res) => {
   res.sendFile(__dirname + '/public/RSO.html')
+})
+
+app.post('/createrso', (req, res, next) => {
+    console.log(req.body)
+  
+  let name = req.body.name
+  let email1 = req.body.email1
+  let email2 = req.body.email2
+  let email3 = req.body.email3
+  let email4 = req.body.email4
+  let email5 = req.body.email5
+  
+  if(!name || !email1 || !email2 || !email3 || !email4 || !email5) {
+    res.redirect('/')
+    return;
+  }
+  
+  let sql = `
+    INSERT INTO RSO_Request
+    VALUES (
+        NULL,
+        '` + name + `',
+        '` + email1 + `',
+        '` + email2 + `',
+        '` + email3 + `',
+        '` + email4 + `',
+        '` + email5 + `'
+    );`
+    console.log(sql)
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err) {
+      res.redirect('/')
+      return;
+    }
+    
+    console.log('RSO Request inserted')
+    console.log(rows.insertId)
+  });
 })
 
 app.get(['/register', '/register.html'], (req, res) => {
@@ -237,6 +361,116 @@ app.post(['/register', '/register.html'], (req, res, next) => {
 app.get(['/logout', '/logout.html'], (req, res) => {
   req.logout()
   res.redirect('/')
+})
+
+app.post('/sendRSOData', (req, res, next) => {
+  let rso_name = req.body.rso_name
+  let rso_approved = req.body.rso_approved
+  
+  if(!name || !rso_approved) {
+    res.redirect('/')
+    return;
+  }
+  
+  if (rso_approved == '1') {
+    let sql = `
+    INSERT INTO RSO
+    VALUES (
+        NULL,
+        '` + rso_name + `'
+    );`
+    console.log(sql)
+    connection.query(sql, function(err, rows) {
+      console.log(err); console.log(rows);
+    
+      if (err) {
+        res.redirect('/')
+        return;
+      }
+      
+      console.log('RSO inserted')
+      console.log(rows.insertId)
+    });
+  }
+  
+  let sql = `
+  DELETE FROM RSO_Request
+  WHERE RSO_Request.rsorequest_name='` + rso_name + `';`
+  console.log(sql)
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err) {
+      res.redirect('/')
+      return;
+    }
+    
+    console.log('RSO request deleted')
+  });
+})
+
+app.get('/getEventList', (req, res, next) => {
+  let sql = `
+  SELECT *
+  FROM Event`
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err || !rows) {
+      res.redirect('/')
+      return;
+    }
+    
+    return rows[0];
+  })
+})
+
+app.get('/getRSOList', (req, res, next) => {
+  let sql = `
+  SELECT *
+  FROM RSO`
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err || !rows) {
+      res.redirect('/')
+      return;
+    }
+    
+    return rows[0];
+  })
+})
+
+app.get('/getRSORequestList', (req, res, next) => {
+  let sql = `
+  SELECT *
+  FROM RSO_Request`
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err || !rows) {
+      res.redirect('/')
+      return;
+    }
+    
+    return rows[0];
+  })
+})
+
+app.get('/getMemberRequestList', (req, res, next) => {
+  let sql = `
+  SELECT *
+  FROM RSO_Member_Request`
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err || !rows) {
+      res.redirect('/')
+      return;
+    }
+    
+    return rows[0];
+  })
 })
 
 module.exports = app
