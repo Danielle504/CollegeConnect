@@ -161,6 +161,79 @@ app.get(['/register', '/register.html'], (req, res) => {
   }
 })
 
+app.post(['/register', '/register.html'], (req, res, next) => {
+  console.log(req.body)
+  
+  let email = req.body.email
+  let password = req.body.password
+  let passwordre = req.body.passwordre
+  let firstname = req.body.firstname
+  let lastname = req.body.lastname
+  let university = req.body.university
+  
+  if(!email || !password || !passwordre || password.localeCompare(passwordre) || !firstname || !lastname) {
+    res.redirect('/register')
+    return;
+  }
+  
+  let sql = `
+    INSERT INTO User
+    VALUES (
+        NULL,
+        '` + email + `',
+        '` + passwordre + `',
+        '0000000000000000',
+        NULL,
+        '` + firstname + `',
+        '` + lastname + `'
+    );`
+    console.log(sql)
+  connection.query(sql, function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err) {
+      res.redirect('/')
+      return;
+    }
+    
+    console.log('User inserted')
+    console.log(rows.insertId)
+    let userId = rows.insertId
+    
+    let sql = `
+    SELECT *
+    FROM University
+    WHERE University.university_name='` + university + `'`
+    connection.query(sql, function(err, rows) {
+      console.log(err); console.log(rows);
+    
+      if (err || !rows) {
+        res.redirect('/')
+        return;
+      }
+      
+      console.log(rows[0].university_id)
+      console.log('University found')
+      
+      let sql = `
+      INSERT INTO Student
+      VALUES (NULL, ` + userId + `, ` + rows[0].university_id + `);`
+      connection.query(sql, function(err, rows) {
+        console.log(err); console.log(rows);
+      
+        if (err) {
+          res.redirect('/')
+          return;
+        }
+        
+        console.log('Student inserted')
+      });
+    });
+    
+    res.redirect('/login')
+  });
+})
+
 app.get(['/logout', '/logout.html'], (req, res) => {
   req.logout()
   res.redirect('/')

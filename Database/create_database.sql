@@ -13,7 +13,7 @@ CREATE TABLE User (
     user_firstname  VARCHAR(20) NOT NULL,
     user_lastname   VARCHAR(20) NOT NULL,
     PRIMARY KEY (user_id),
-    UNIQUE KEY (user_email, user_sessionid)
+    UNIQUE KEY (user_email)
 );
 
 -- Contains all information pertaining to a University.

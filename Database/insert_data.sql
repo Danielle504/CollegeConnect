@@ -410,7 +410,7 @@ VALUES (
 INSERT INTO University
 VALUES (
     NULL,
-    'University of Central Florida (UCF)',
+    'University of Central Florida',
     '4000 Central Florida Blvd, Orlando, FL 32816',
     28.602000, -81.200809,
     'The University of Central Florida\'s main campus',
@@ -420,7 +420,7 @@ VALUES (
 INSERT INTO University
 VALUES (
     NULL,
-    'Florida State University (FSU)',
+    'Florida State University',
     '600 W College Ave, Tallahassee, FL 32306',
     30.441942, -84.298720,
     'Florida State University\'s main campus',
@@ -430,7 +430,7 @@ VALUES (
 INSERT INTO University
 VALUES (
     NULL,
-    'New York University (NYU)',
+    'New York University',
     'New York, NY 10003',
     40.729448, -73.996397,
     'New York University\'s main campus',
