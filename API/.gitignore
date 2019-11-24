@@ -70,3 +70,5 @@ yarn-error.log
 
 # Server configs
 db_config.js
+
+sessions
