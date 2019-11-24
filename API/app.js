@@ -5,6 +5,7 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const bodyParser = require('body-parser')
 const passport = require('passport')
+const mysql = require('mysql');
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt-nodejs')
 
@@ -12,35 +13,53 @@ const users = [
   {id: '2f24vvg', email: 'test@test.com', password: 'password'}
 ]
 
+const db_config = require('./db_config');
+
+let connection = mysql.createConnection({
+    host: db_config.host,
+    user: db_config.user,
+    password: db_config.password,
+    database: db_config.database
+});
+
+connection.connect(function(err) {
+  if (err) {
+    return console.error('error: ' + err.message);
+  }
+ 
+  console.log('Connected to the MySQL server.');
+});
+
+
+
+ 
+
 // configure passport.js to use the local strategy
 passport.use(new LocalStrategy(
-  { usernameField: 'email' },
+  { usernameField: 'email', passwordField: 'password' },
   (email, password, done) => {
-    /*axios.get(`http://localhost:5000/users?email=${email}`)
-    .then(res => {
-      const user = res.data[0]
-      if (!user) {
-        return done(null, false, { message: 'Invalid credentials.\n' })
-      }
-      if (!bcrypt.compareSync(password, user.password)) {
-        return done(null, false, { message: 'Invalid credentials.\n' })
-      }
-      return done(null, user)
-    })
-    .catch(error => done(error))*/
-    
-    console.log('Inside local strategy callback')
-    // here is where you make a call to the database
-    // to find the user based on their username or email address
-    // for now, we'll just pretend we found that it was users[0]
-    const user = users[0] 
-    if(email === user.email && password === user.password) {
-      console.log('Local strategy returned true')
-      return done(null, user)
+    if(!email || !password ) {
+      return done(null, false);
     }
     
-    console.log('Local strategy returned false')
-    return done(null, null)
+    connection.query(`SELECT * FROM User WHERE User.user_email='` + email + `'`, [email], function(err, rows) {
+      console.log(err); console.log(rows);
+      
+      if (err) return done(null, null)
+          
+      if(!rows.length){
+        return done(null, false)
+      }
+      
+      var dbPassword  = rows[0].user_passhash
+      
+      if(!(dbPassword.localeCompare(password))){
+        console.log('YEUIYKJFHKJDHFKJDHFKJD')
+        return done(null, {id: rows[0].user_id, email: email, password: password})
+      }
+      
+      return done(null, rows[0])
+    });
   }
 ))
 
@@ -50,14 +69,22 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  /*axios.get(`http://localhost:5000/users/${id}`)
-  .then(res => done(null, res.data) )
-  .catch(error => done(error, false))*/
-  
   console.log('Inside deserializeUser callback')
   console.log(`The user id passport saved in the session file store is: ${id}`)
-  const user = users[0].id === id ? users[0] : false 
-  done(null, user)
+  
+  connection.query(`SELECT * FROM User WHERE User.user_id='` + id + `'`, [id], function(err, rows) {
+    console.log(err); console.log(rows);
+  
+    if (err) return done(null, null)
+      
+    if(!rows.length){
+      return done(null, false)
+    }
+  
+    var dbPassword  = rows[0].user_passhash
+  
+    return done(null, {id: rows[0].user_id, email: rows[0].email, password: dbPassword})
+  });
 })
 
 // create the server
@@ -89,7 +116,7 @@ var sessionChecker = (req, res, next) => {
         next()
     } else {
         res.redirect('/')
-    }    
+    }
 }
 
 // create the homepage route at '/'
@@ -115,7 +142,7 @@ app.post(['/login', '/login.html'], (req, res, next) => {
 })
 
 app.get(['/dashboard', '/dashboard.html'], sessionChecker, (req, res) => {
-    res.sendFile(__dirname + '/public/dashboard.html')
+  res.sendFile(__dirname + '/public/dashboard.html')
 })
 
 app.get('/createevent', sessionChecker, (req, res) => {
@@ -134,7 +161,7 @@ app.get(['/register', '/register.html'], (req, res) => {
   }
 })
 
-app.get('/logout', (req, res) => {
+app.get(['/logout', '/logout.html'], (req, res) => {
   req.logout()
   res.redirect('/')
 })
